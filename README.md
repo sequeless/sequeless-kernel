@@ -1,34 +1,37 @@
-# sequeless-template
+# sequeless-kernel
 
-The starting point for a new Sequeless repo. It is a GitHub template repository: copy it with
-"Use this template", then run the init script once in the new repo:
+The identity and value types every Sequeless module shares. Two modules, each released on its own:
+
+| Module | Package | Contents | Depends on |
+|---|---|---|---|
+| `kernel-identity` | `org.sequeless.kernel.identity` | `Scope`, `TenantId`, `Principal` | the JDK only |
+| `kernel-values` | `org.sequeless.kernel.values` | `ObjectId`, the sealed `Value` hierarchy, `ObjectNotFoundException` | the JDK only |
+
+The two modules are independent: neither depends on the other. They are split because `Value`
+changes at a different rate from identity, and code that needs only identity should not be
+released with every value change.
+
+## Build
 
 ```bash
-make init name=<repo-name>            # or: scripts/init-repo.sh <repo-name> [--github]
+./mvnw -B verify       # JDK 25; libraries compile with --release 21
 ```
 
-The init script renames the placeholders (`template-core`, `org.sequeless.template`,
-`sequeless-template`), resets PROVENANCE.md and removes itself.
+GitHub Packages needs a read token in the environment (`source ~/.bashrc.ext` on the owner's
+machine). Never write a token into a file.
 
-## What the template gives a repo
+## Release
 
-- Maven wrapper, Makefile (`make verify`, `make fmt`, `make new-adr`), devcontainer on JDK 25.
-- A parent POM from `sequeless-build` and reusable CI, CodeQL, Sonar and release workflows.
-- release-please in manifest mode, with per-module versions and 0.1.0 as the first version.
-- A canonical `BoundaryRulesTest` for the module layers (api, spi, internal).
-- A commitlint PR-title check and the agent docs under `docs/agents/`.
+Modules are released by release-please in manifest mode with the `maven-workspace` plugin. Tags are
+`<module>-vX.Y.Z`. Both modules start at `0.1.0`. Every version change is a patch bump until the
+owner decides otherwise. A new permitted subtype of the sealed `Value` is a major bump, as is adding
+a `Datatype`; a method with a default implementation is a minor bump.
 
-The parent POM (`sequeless-build-parent` 0.1.3) and the reusable workflows (`workflows-v0.1.2`)
-come from released `sequeless-build` versions, and CI runs against them. Renovate moves both.
-The extraction plan is in `docs/extraction` in the prototype repo.
+## Provenance
 
-## Local setup
+The code came from `sequeless-prototype`, with a fresh history. See [PROVENANCE.md](PROVENANCE.md).
 
-The parent POM comes from GitHub Packages, so export a token with `read:packages` as
-`GITHUB_PACKAGES_TOKEN` before any `mvn` run. The `github` server in `~/.m2/settings.xml` reads it
-as `<password>${env.GITHUB_PACKAGES_TOKEN}</password>`; `sequeless-build`'s README has the full entry.
+## Decisions
 
-If `spotless:check` fails at `verify`, run `mvn spotless:apply`, then `mvn verify` again. The parent
-rejects a POM that is valid XML but not in the formatter's layout.
-
-SonarCloud is optional: the workflow skips with a notice when `SONAR_TOKEN` is absent.
+- [0001](docs/adr/0001-package-names-follow-the-repo-segment.md): package names follow the repo segment.
+- Architecture decision records live in [docs/adr/](docs/adr/).

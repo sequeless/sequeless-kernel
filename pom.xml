@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Aggregator only. Never released or deployed (spec 2, §1 and §6).
-  Modules take their parent from sequeless-build-parent, not from this POM, so the
-  repository entry and the junit-bom import are repeated in template-core/pom.xml.
+  Aggregator only. Never released or deployed: each module is released on its own (spec 5, §5).
+  Modules take their parent from sequeless-build-parent, not from this POM.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -10,18 +9,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.sequeless</groupId>
-  <artifactId>sequeless-template</artifactId>
+  <artifactId>sequeless-kernel</artifactId>
   <version>0.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>sequeless-template</name>
-  <description>Placeholder repo: copy this to start a new Sequeless repo.</description>
+  <name>sequeless-kernel</name>
+  <description>Kernel: identity and value types shared by every Sequeless module.</description>
 
   <properties>
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
 
   <modules>
-    <module>template-core</module>
+    <module>kernel-identity</module>
+    <module>kernel-values</module>
   </modules>
 
   <repositories>
