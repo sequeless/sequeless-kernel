@@ -26,6 +26,3 @@ new-adr: ## Scaffold a new ADR: make new-adr title="Some decision"
 	@scripts/new-adr.sh "$(title)"
 
 
-.PHONY: init
-init: ## Rename the template placeholders to a new repo: make init name=<repo-name>
-	@scripts/init-repo.sh "$(name)"
