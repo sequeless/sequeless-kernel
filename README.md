@@ -17,9 +17,6 @@ released with every value change.
 ./mvnw -B verify       # JDK 25; libraries compile with --release 21
 ```
 
-GitHub Packages needs a read token in the environment (`source ~/.bashrc.ext` on the owner's
-machine). Never write a token into a file.
-
 ## Release
 
 Modules are released by release-please in manifest mode with the `maven-workspace` plugin. Tags are
