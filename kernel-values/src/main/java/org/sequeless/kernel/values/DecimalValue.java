@@ -11,10 +11,14 @@ import java.util.Objects;
  * round trip through storage is expected to preserve the exact scale the value was created with.
  * Accordingly this record does not normalize scale, and {@code equals}/{@code hashCode} use {@link
  * BigDecimal}'s own scale-sensitive definition ({@code new BigDecimal("12.50")} is <em>not</em>
- * equal to {@code new BigDecimal("12.5")}, and neither is equal to {@code BigDecimal.valueOf(12.5)},
- * which has scale 1). Callers that build a {@code DecimalValue} to assert a round trip must
+ * equal to {@code new BigDecimal("12.5")}).
+ * Callers that build a {@code DecimalValue} to assert a round trip must
  * construct the {@link BigDecimal} from the exact expected literal, not from {@code valueOf} on a
  * {@code double}.
+ *
+ * <p>{@code BigDecimal.valueOf(double)} uses {@code Double.toString}. So
+ * {@code BigDecimal.valueOf(12.5)} equals {@code new BigDecimal("12.5")}. It does not equal
+ * {@code new BigDecimal("12.50")}.
  *
  * @param value the decimal value, at its original scale; must not be {@code null}
  */

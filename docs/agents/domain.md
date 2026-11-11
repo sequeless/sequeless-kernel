@@ -15,7 +15,7 @@ Skills and agents reading domain docs follow these rules:
 
 1. **Glossary first**: Always read `GLOSSARY.md` before an ADR, since terms are defined there.
 2. **One glossary**: There is one shared glossary for the whole repo.
-3. **ADR structure**: Each ADR is a Markdown file in `docs/adr/` with a kebab-case name (e.g., `0001-event-sourcing.md`). Use the [ADR template](https://adr.github.io/madr/) or your own format, but include a **Status** field (Proposed, Accepted, Deprecated, Superseded).
+3. **ADR structure**: Each ADR is a Markdown file in `docs/adr/` with a kebab-case name, for example `0001-package-names-follow-the-repo-segment.md`. Use the [ADR template](../adr/_template.md). Include a **Status** field with one of: proposed, accepted, superseded by ADR-XXXX.
 4. **Linking**: ADRs may reference each other; use relative links (e.g., `[0002](0002-caching-strategy.md)`).
 
 ## For humans

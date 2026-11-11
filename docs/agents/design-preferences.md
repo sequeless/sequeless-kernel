@@ -10,19 +10,17 @@ Design decisions in this project should prioritise:
 
 ## Architectural pattern: hexagonal (ports and adapters)
 
-Each module splits into three layers, enforced by `BoundaryRulesTest`:
+The build enforces these rules:
+- A module must not depend on Spring. The `BoundaryRulesTest` in each module checks this.
+- A module must depend only on the JDK and its own package. The `BoundaryRulesTest` in each module checks this.
+- The parent POM bans Spring, Jena, and Lombok. The module POMs opt in (kernel-*/pom.xml:20-21).
+- The parent POM runs dependency analysis and fails on warnings.
 
-- **`api`**: the types callers use. Public.
-- **`spi`**: the ports that adapters implement. Public.
-- **`internal`**: implementation detail. Not reachable from outside the module.
-
-Api and spi never depend on internal. Core modules take no Spring, Jena or Lombok dependency.
-Those belong in adapter modules. Maven dependency declarations enforce the rest.
-
-## Adapter strategy
-
-Each port has a default adapter, and a configuration property selects it, not code branching
-or feature flags. Contract tests in a testkit module hold every adapter to the same guarantees.
+The rules below come from sequeless/sequeless-template. The code in this repo does not enforce them. This repo does not have the packages or modules they describe:
+- Each module must have `api`, `spi`, and `internal` packages.
+- The `api` and `spi` packages must not depend on `internal`.
+- Each port must have a default adapter.
+- Contract tests must run in a testkit module.
 
 ## How agents should apply this
 

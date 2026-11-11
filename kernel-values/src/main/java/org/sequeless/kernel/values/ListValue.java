@@ -15,6 +15,12 @@ import java.util.Objects;
  */
 public record ListValue(List<Value> values) implements Value {
 
+    /**
+     * Creates a list value.
+     *
+     * @throws NullPointerException if {@code values} is {@code null} or contains a {@code null} element
+     * @throws IllegalArgumentException if {@code values} contains a nested {@link ListValue}
+     */
     public ListValue {
         Objects.requireNonNull(values, "values must not be null");
         values = List.copyOf(values);
