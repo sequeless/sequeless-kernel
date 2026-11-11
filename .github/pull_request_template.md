@@ -1,6 +1,6 @@
 <!--
-PR titles MUST be Conventional Commits (feat:, fix:, docs:, refactor:, test:, chore:, build:, ci:, perf:);
-the title drives versioning and the changelog on squash-merge.
+PR titles must be Conventional Commits. Use one of these types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert.
+The title drives versioning and the changelog on squash-merge.
 -->
 
 ## What changed

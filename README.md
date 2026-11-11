@@ -11,6 +11,10 @@ The two modules are independent: neither depends on the other. They are split be
 changes at a different rate from identity, and code that needs only identity should not be
 released with every value change.
 
+## Use the modules
+
+To add a module to your project, read the [how-to guide](docs/how-to/use-the-modules.md).
+
 ## Build
 
 ```bash

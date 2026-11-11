@@ -15,7 +15,8 @@ import java.util.Set;
  * treated as immutable. {@link Set#copyOf(java.util.Collection)} also rejects {@code null} roles
  * for free.
  *
- * @param id unique identifier for the principal; must not be blank
+ * @param id identifier for the principal; must not be blank.
+ *     This record does not check uniqueness.
  * @param roles the principal's roles; must not be {@code null} (individual role strings are not
  *     further validated — role vocabulary is a concern for the authorization adapter, not this SPI)
  */
@@ -24,6 +25,12 @@ public record Principal(String id, Set<String> roles) {
     /** The unauthenticated caller, used wherever no identity provider has run. */
     public static final Principal ANONYMOUS = new Principal("anonymous", Set.of());
 
+    /**
+     * Creates a principal.
+     *
+     * @throws IllegalArgumentException if {@code id} is {@code null} or blank
+     * @throws NullPointerException if {@code roles} is {@code null} or contains a {@code null} element
+     */
     public Principal {
         if (id == null || id.isBlank()) {
             throw new IllegalArgumentException("Principal id must not be blank");
