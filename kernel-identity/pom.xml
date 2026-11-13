@@ -12,7 +12,7 @@
 
   <groupId>org.sequeless</groupId>
   <artifactId>kernel-identity</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.1</version>
   <name>kernel-identity</name>
   <description>Scope, TenantId and Principal: the identity types every Sequeless module shares. JDK only.</description>
 
