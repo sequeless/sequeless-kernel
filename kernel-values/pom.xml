@@ -12,7 +12,7 @@
 
   <groupId>org.sequeless</groupId>
   <artifactId>kernel-values</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.1</version>
   <name>kernel-values</name>
   <description>ObjectId, the sealed Value hierarchy and ObjectNotFoundException. JDK only, and independent of kernel-identity.</description>
 
