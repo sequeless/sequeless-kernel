@@ -4,7 +4,7 @@
   "include-component-in-tag": true,
   "plugins": [{ "type": "maven-workspace" }],
   "packages": {
-    "kernel-identity": { "component": "kernel-identity", "initial-version": "0.1.0" },
-    "kernel-values": { "component": "kernel-values", "initial-version": "0.1.0" }
+    "kernel-identity": { "component": "kernel-identity", "initial-version": "0.1.0", "skip-snapshot": true },
+    "kernel-values": { "component": "kernel-values", "initial-version": "0.1.0", "skip-snapshot": true }
   }
 }
